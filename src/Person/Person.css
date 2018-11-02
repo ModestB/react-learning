@@ -1,0 +1,19 @@
+.Person{
+    width: 100px;
+    height: 200px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px #ccc;
+    background-color: azure;
+    text-align: center;
+    margin: 20px;
+}
+
+p{
+    font-size: 18px;
+}
+.btn-danger{
+    background-color: red;
+}
+
