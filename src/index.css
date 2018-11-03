@@ -12,3 +12,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.dFlex{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btnRed{
+  background-color: red;
+  color: white;
+}
+
+.btnRed:hover{
+  background-color: salmon;
+  color: black;
+}
+
+.btnGreen{
+  background-color: green;
+  color: white;
+}
+
+.btnGreen:hover{
+  background-color: darkgreen;
+  color: black;
+}
