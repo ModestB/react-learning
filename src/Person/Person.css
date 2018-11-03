@@ -17,3 +17,10 @@ p{
     background-color: red;
 }
 
+@media (max-width: 500px) {
+    .Person{
+        width: 100%;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+}

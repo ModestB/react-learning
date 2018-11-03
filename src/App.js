@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import './App.css';
+import  classes  from './App.module.css';
 import Person from './Person/Person';
-import Radium from 'radium';
+const SHORT_ID = require('shortid');
 
 class App extends Component {
+  
+  
   generateRandomKey = () => {
     const LETTERS = ['a', 'b', 'c','d','e'];
     const NUMBER = Math.floor((Math.random() * 100) + 1);
@@ -13,8 +15,8 @@ class App extends Component {
 
   state = {
     persons: [
-      {name:'Modestas', age:25, id: this.generateRandomKey()},
-      {name:'Tadas', age:55, id: this.generateRandomKey()}
+      {name:'Modestas', age:25, id: SHORT_ID.generate()},
+      {name:'Tadas', age:55, id: SHORT_ID.generate()}
     ],
     showPersons: false,
     newPersonName: 'new Person'
@@ -36,7 +38,7 @@ class App extends Component {
   addPersonHandler = () => {
     const persons = this.state.persons;
     persons.push(
-       {name: this.state.newPersonName , age : 0, id: this.generateRandomKey()}
+       {name: this.state.newPersonName , age : 0, id: SHORT_ID.generate()}
     );
     this.setState({
       persons : persons
@@ -48,14 +50,14 @@ class App extends Component {
   }
 
   nameChangeHandler = (event, id) => {
-    const PERSON_INDEX = this.state.persons.findIndex(p => {
+    const person_index = this.state.persons.findIndex(p => {
       return p.id === id;
     });
-    const PERSON = {...this.state.persons[PERSON_INDEX]};
-    PERSON.name = event.target.value;
+    const person = {...this.state.persons[person_index]};
+    person.name = event.target.value;
     
     const PERSONS = [...this.state.persons]
-    PERSONS[PERSON_INDEX] = PERSON;
+    PERSONS[person_index] = person;
 
     this.setState({
       persons: PERSONS
@@ -66,19 +68,12 @@ class App extends Component {
     let persons = (
       <p> No persons </p>
     )
-    let btnStyle = 'btn-show';
+    let btnStyle = classes.btnGreen;
     let btnText = 'Show Persons';
-
-    // USING RADIUM
-    let style = {
-      ':hover': {
-        backgroundColor: 'darkgreen'
-      }
-    }
-      
+  
     if(this.state.showPersons){
       persons = (
-        <div className="d-flex">
+        <div className={classes.dFlex}>
           {this.state.persons.map((person, index) => {
             return (<Person
               click = {() => this.deletePersonHandler(index)}
@@ -92,22 +87,14 @@ class App extends Component {
         </div>  
       )   
 
-      btnStyle = 'btn-hide';
+      btnStyle = classes.btnRed;
       btnText = 'Hide Persons';
-      
-      // USING RADIUM
-      style[':hover'] = {
-        backgroundColor: 'salmon'
-      }
     };
 
     
-
-    
-
     return (
       <section> 
-        <div className="App">
+        <div className={classes.App}>
           <form>
             <input
               onChange={this.updateNewPersonsNameHandler}
@@ -118,7 +105,7 @@ class App extends Component {
           </form>
 
           <button className='' onClick={this.addPersonHandler}>Add Person</button>
-          <button style={style} className={btnStyle} onClick={this.showPersonsHandler}>{btnText}</button>
+          <button className={btnStyle} onClick={this.showPersonsHandler}>{btnText}</button>
           {persons}
         </div>
       </section>
@@ -126,4 +113,4 @@ class App extends Component {
   }
 }
 
-export default Radium(App);
+export default App;

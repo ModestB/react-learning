@@ -15,7 +15,7 @@ section{
   
 }
 
-.d-flex{
+.dFlex{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -43,14 +43,24 @@ button{
 
 }
 
-.btn-hide{
+.btnRed{
   background-color: red;
   color: white;
 }
 
-.btn-show{
+.btnRed:hover{
+  background-color: salmon;
+  color: black;
+}
+
+.btnGreen{
   background-color: green;
   color: white;
+}
+
+.btnGreen:hover{
+  background-color: darkgreen;
+  color: black;
 }
 
 .m-10{
